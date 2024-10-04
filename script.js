@@ -82,6 +82,10 @@ class App extends TaskList{
         const tasksLabel = document.createElement('h2')
         tasksLabel.append('Список заданий')
         this.appTasks.append(tasksLabel)
+
+        document.addEventListener( 'keyup', event => {
+            if( event.code === 'Enter' ) this.onAdd();
+          });
     }
   
     onAdd() {
