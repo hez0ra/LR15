@@ -23,6 +23,14 @@ class TaskList{
         this.list = this.list.filter(task => task.get().id !== id);
     }
 
+    clearAll(){
+        this.list = []
+    }
+    
+    clearDone(){
+        this.list = this.list.filter(task => task.get().isDone == false)
+    }
+
     get() {
         return this.list.map(task => task.get());
     }
@@ -49,11 +57,28 @@ class App extends TaskList{
         input.name = 'task'
         input.placeholder = 'Добавьте новую задачу'
         this.appInput.append(input);
+
         const inputBtn = document.createElement('button')
         inputBtn.onclick = () => this.onAdd()
         inputBtn.id = 'addBtn'
         inputBtn.append('+')
         this.appInput.append(inputBtn)
+
+        const clearAllBtn = document.createElement('button')
+        clearAllBtn.append("Очистить все задачи")
+        clearAllBtn.style.width = "80px"
+        clearAllBtn.style.fontSize = "14px"
+        clearAllBtn.onclick = () => this.onClearAll()
+        this.appInput.append(clearAllBtn)
+
+        const clearDoneBtn = document.createElement('button')
+        clearDoneBtn.append("Очистить выполненные задачи")
+        clearDoneBtn.style.width = "100px"
+        clearDoneBtn.style.fontSize = "14px"
+        clearDoneBtn.style.height = "60px"
+        clearDoneBtn.onclick = () => this.onClearDone()
+        this.appInput.append(clearDoneBtn)
+
         const tasksLabel = document.createElement('h2')
         tasksLabel.append('Список заданий')
         this.appTasks.append(tasksLabel)
@@ -71,7 +96,7 @@ class App extends TaskList{
 
       const text = document.getElementById('input').value;
       if(text.length != 0){
-          const task = new Task(id, text, false);
+          const task = new Task(id, text.trim(), false);
           super.add(task);
           this.get();
           document.getElementById('input').value = "";
@@ -82,6 +107,16 @@ class App extends TaskList{
       // Логика удаления контакта
       super.remove(id);
       this.get();
+    }
+
+    onClearAll(){
+        super.clearAll()
+        this.get()
+    }
+
+    onClearDone(){
+        super.clearDone()
+        this.get()
     }
   
     get() {
@@ -116,6 +151,23 @@ class App extends TaskList{
                 text.style.color = checkBox.checked ? '#78CFB0' : '#9E78CF'; // Цвет текста
             });
             
+            // Кнопка редактирования
+            const editBtn = document.createElement('button');
+            const editImg = document.createElement('img');
+            editImg.src = 'img/edit.png'; // Путь к изображению редактирования
+            editBtn.append(editImg);
+            
+            // Обработчик события для редактирования текста
+            editBtn.onclick = () => {
+                const newText = prompt('Измените текст задачи:', task.text);
+                if (newText !== null && newText.trim() !== '') {
+                    task.text = newText.trim();
+                    text.innerText = task.text; // Обновляем текст на экране
+                }
+            };
+            
+            taskDiv.append(editBtn);
+    
             const taskBtn = document.createElement('button');
             taskBtn.onclick = () => this.onRemove(task.id);
             
