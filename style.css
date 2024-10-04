@@ -1,0 +1,117 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+body{
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    justify-content: center;
+    background: #0D0714;
+}
+
+.input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 500px;
+    margin-top: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#input{
+    width: 400px;
+    height: 40px;
+    font-size: 24px;
+    border: 2px solid #3E1671;
+    border-radius: 15px;
+    color: #9E78CF;
+    padding-left: 15px;
+    background: #0D0714;
+}
+
+
+
+.input button{
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+    border: 2px solid #9E78CF;
+    background: #9E78CF;
+    color: white;
+    font-size: 24px;
+}
+
+.input button:hover{
+    background: #3E1671;
+}
+
+.input button:active{
+    height: 38px;
+    width: 38px;
+    font-size: 22px;
+}
+
+.input button:focus{
+    outline: 2px solid #3E1671;
+}
+
+#input:focus{
+    outline: 1px solid #9E78CF;
+}
+
+.tasks{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
+
+.tasks h2{
+    text-align: start;
+    color: white;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.task{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #15101C;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.task input, button, img{
+    width: 24px;
+    height: 24px;
+}
+
+.task button{
+    margin-right: 10px;
+    margin-left: 10px;
+    background: #15101C;
+}
+
+.task button:hover, input:hover{
+    cursor: pointer;
+}
+
+.task p{
+    width: 450px;
+    margin-left: 10px;
+    margin-right: 50px;
+    text-align: left;
+    display: inline-block;
+    color: #9E78CF;
+}
